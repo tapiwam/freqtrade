@@ -96,7 +96,7 @@ class BBRSI(IStrategy):
         """
         dataframe.loc[
             (
-                (dataframe['rsi'] > 30) &
+                (dataframe['rsi'] > 35) &
                 (dataframe['close'] < dataframe['bb_lowerband'])
             ),
             'buy'] = 1
@@ -112,7 +112,8 @@ class BBRSI(IStrategy):
         """
         dataframe.loc[
             (
-                (dataframe['close'] > dataframe['bb_middleband'])
+                (dataframe['close'] > dataframe['bb_middleband']) 
+                & (dataframe['rsi'] < 40)
             ),
             'sell'] = 1
         return dataframe
